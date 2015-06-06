@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html ng-app="TrainApp">
+<head>
+	<title>Honey Jade</title>
+		<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+<!--		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'> -->
+      
+    <script src="scripts\jquery-1.11.1.min.js"></script>
+    <script src="scripts\jQuery-Countdown\jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="scripts\angular.js"></script>
+		<script type="text/javascript" src="scripts\angular-animate.js"></script>
+		<script type="text/javascript" src="scripts\CodoPlayerFree-2.1\CodoPlayer.js"></script>
+		<script src="scripts\sanitizemaster\angular-sanitize.min.js"></script>
+		
+  <!-- <link rel="stylesheet" type="text/css" href="styles\dist\css\bootstrap.min.css"> -->
+		<link rel="stylesheet" type="text/css" href="styles\main.css"> 
+    <script src="socket.io\socket.io.js"></script>
+    <script type="text/javascript" src="scripts\socket.js"></script>
+    <script type="text/javascript" src="scripts\factories\socketFactory.js"></script>
+    <script type="text/javascript" src="scripts\controllers\playerController.js"></script>
+    <script type="text/javascript" src="scripts\app.js"></script>
+    
+
+    
+    <link rel="stylesheet" type="text/css" href="scripts\jQuery-Countdown\jquery.countdown.css">
+ 
+
+    
+</head>
+<body ng-controller="playerController as controller"  style="overflow:hidden;background-color:black;padding-left:0px;">
+
+    <div>
+      <div id="leftDiv" class="UnqH1">
+
+          <div style="padding-bottom:0px; margin-bottom:0px;" ng-animate="'animate'" ng-repeat-start=" notifil in notificationList track by $index | orderBy: sortByTime ">
+                                     
+              <h4 style="color:white;font-family:verdana;padding-left:4px;padding-right:5px;"><b> Train <span style="color:#4099FF;float:right;">{{notificationList[$index].start | uppercase}}</span><span style="float:right;">&nbsp;to&nbsp;</span><span style="color:#4099FF;float:right;">{{notificationList[$index].end  | uppercase}}</span> <br />Will Arrive at: </b></h4>
+          </div>
+          
+          <div style="text-align: center" ng-repeat-end><span style="font-size: 25px; color:#4099FF;">{{notificationList[$index].time}}</span></div>
+       
+        </div>
+
+
+        
+	
+          <div id="vidguContainer">
+
+            <script type="text/javascript">
+              var playerHeight = 500; 
+              var playerWidth = 1293;
+               playerHeight = document.getElementsByClassName('.codo-player-container').clientHeight;
+               playerWidth = document.getElementsByClassName('.codo-player-container').clientWidth;
+
+              
+              var adPlayer = CodoPlayer([{src : 'relative://2.mp4'},{src : 'relative://1.mp4'}] , {
+                        width: playerWidth,
+                        height: playerHeight, // 870
+                        autoplay: true,
+                        controls: {show: 'never'}
+                        
+
+                })
+            </script>
+
+          </div> 
+
+          <div id="bottomDiv">
+ 
+            <div style="color : #bce8f1">
+              <p style="text-align: center"><b> Train <span style="color:#4099FF">{{nextTrain[0].start | uppercase}}</span> to <span style="color:#4099FF">{{nextTrain[0].end  | uppercase}}</span> Will Arrive at: </b></p>
+              <p style="text-align: center;padding-top:1px"><span id="mQTimespan" style="font-family:Ds-Digital;color:#d9edf7">{{nextTrain[0].time}}</span> <span style="font-size:28px;color:#d9edf7">Now Between {{nextTrain[0].nowprev}} and {{nextTrain[0].nownext}}</span> </p>
+            </div>
+              
+              
+          </div>
+
+
+          <div id="notifiNGreet" style="position: absolute;text-align:center;background-color:#2e2e2e">
+            <h1 style="color:#337ab7"><b>ATTENTION EVERYONE !</b></h1>
+            <h1 style="color:#337ab7"><b>The Next Train <span style="color:black">{{nextTrain[0].start | uppercase}}</span>&#x00A0;to&#x00A0;<span style="color:black">{{nextTrain[0].end| uppercase}}</span> Arriving in Few Miniuts</b></h1>
+            <h1 style="color:white"><b>Thank You for Your Patiency, Have a Safe Ride.</b></h1>
+          </div>
+
+          <div id="countdown">
+            
+                
+
+               <ul id="example">
+                  <li><span class="days" style="color:white">00</span><p class="days_text" style="color:white">Days</p></li>
+                  <li class="seperator" style="color:white">:</li>
+                  <li><span class="hours" style="color:white">00</span><p class="hours_text" style="color:white">Hours</p></li>
+                  <li class="seperator" style="color:white">:</li>
+                  <li><span class="minutes" style="color:white">00</span><p class="minutes_text" style="color:white">Minutes</p></li>
+                  <li class="seperator" style="color:white">:</li>
+                  <li><span class="seconds" style="color:white">00</span><p class="seconds_text" style="color:white">Seconds</p></li>
+               </ul>
+
+
+           
+          
+          </div>
+
+          
+    </div>
+
+
+
+</body>
+</html>
